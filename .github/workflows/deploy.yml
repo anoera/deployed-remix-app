@@ -83,8 +83,8 @@ jobs:
         env: 
           APP_ENV: ${{ secrets.APP_ENV_STAGING }}
         run: 
-          docker pull anoera/deployed-app:latest
-          docker compose -f ./docker-compose.staging.yml up -d
+          docker pull anoera/deployed-app:latest &&
+          docker compose -f ./docker-compose.staging.yml up -d &&
           docker system prune --all --volumes --force
 
       - name: 🚀 Run Docker Compose on Production
@@ -92,6 +92,6 @@ jobs:
         env: 
           APP_ENV: ${{ secrets.APP_ENV }}
         run: 
-          docker pull anoera/deployed-app:production
-          docker compose -f ./docker-compose.yml up -d
+          docker pull anoera/deployed-app:production &&
+          docker compose -f ./docker-compose.yml up -d &&
           docker system prune --all --volumes --force
