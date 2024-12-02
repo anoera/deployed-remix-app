@@ -61,41 +61,38 @@ jobs:
     uses: ./.github/workflows/build.yml
     secrets: inherit
 
-  deploy:
-    name: 🚀 Deploy
-    runs-on: [self-hosted]
-    needs: [lint, typecheck, build]
-    # only deploy master/dev branch on pushes
-    if: ${{ (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev') && github.event_name == 'push' }}
+  # deploy:
+  #   name: 🚀 Deploy
+  #   runs-on: [self-hosted]
+  #   needs: [lint, typecheck, build]
+  #   # only deploy master/dev branch on pushes
+  #   if: ${{ (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev') && github.event_name == 'push' }}
 
-    # env:
-    #   APP_ENV: ${{ secrets.APP_ENV }}
-
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4.1.1
+  #   steps:
+  #     - name: ⬇️ Checkout repo
+  #       uses: actions/checkout@v4.1.1
       
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     - name: Login to Docker Hub
+  #       uses: docker/login-action@v3
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: 🚀 Run Docker Compose on Staging
-        if: ${{ github.ref == 'refs/heads/dev' }}
-        env: 
-          APP_ENV: ${{ secrets.APP_ENV_STAGING }}
-        run: 
-          docker pull anoera/deployed-app:latest
-          docker compose -f docker-compose.staging.yml up -d
-          docker system prune --all --volumes --force
+  #     - name: 🚀 Run Docker Compose on Staging
+  #       if: ${{ github.ref == 'refs/heads/dev' }}
+  #       env: 
+  #         APP_ENV: ${{ secrets.APP_ENV_STAGING }}
+  #       run: 
+  #         docker pull anoera/deployed-app:latest
+  #         docker compose -f docker-compose.staging.yml up -d
+  #         docker system prune --all --volumes --force
 
-      - name: 🚀 Run Docker Compose on Production
-        if: ${{ github.ref == 'refs/heads/main' }}
-        env: 
-          APP_ENV: ${{ secrets.APP_ENV }}
-        run: 
-          docker pull anoera/deployed-app:production
-          docker compose -f docker-compose.yml up -d
-          docker system prune --all --volumes --force
+  #     - name: 🚀 Run Docker Compose on Production
+  #       if: ${{ github.ref == 'refs/heads/main' }}
+  #       env: 
+  #         APP_ENV: ${{ secrets.APP_ENV }}
+  #       run: 
+  #         docker pull anoera/deployed-app:production
+  #         docker compose -f docker-compose.yml up -d
+  #         docker system prune --all --volumes --force
 
