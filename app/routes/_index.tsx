@@ -1,4 +1,4 @@
-import type { MetaFunction, LoaderFunctionArgs} from "@remix-run/node";
+import type { MetaFunction} from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async({ request }: LoaderFunctionArgs) => {
+export const loader = async({res}: MetaFunction) => {
   return {date: new Date().toLocaleDateString('fr-FR'), APP_ENV: process.env.APP_ENV}
 }
 
