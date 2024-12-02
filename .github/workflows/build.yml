@@ -12,7 +12,7 @@ jobs:
   build:
     name: 🐳 Build
     # only build/deploy master branch on pushes
-    if: ${{ ( github.ref == 'refs/heads/master' || github.ref == 'refs/head/dev') && github.event_name == 'push' }}
+    # if: ${{ ( github.ref == 'refs/heads/master' || github.ref == 'refs/head/dev') && github.event_name == 'push' }}
     # if: ${{ (github.ref == 'refs/heads/master') && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
@@ -40,6 +40,7 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+
       - name: 🐳 Build Production Image
         if: ${{ github.ref == 'refs/heads/master' }}
         uses: docker/build-push-action@v3
