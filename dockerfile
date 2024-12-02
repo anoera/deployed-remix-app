@@ -50,5 +50,7 @@ COPY --from=build /myapp/start.sh /myapp/start.sh
 COPY --from=build /myapp/docker-compose.staging.yml /myapp/docker-compose.staging.yml
 COPY --from=build /myapp/docker-compose.yml /myapp/docker-compose.yml
 
+RUN ["chmod", "+x", "./start.sh" ]
+
 ENTRYPOINT [ "./start.sh" ]
 # CMD ["npm", "start"]
