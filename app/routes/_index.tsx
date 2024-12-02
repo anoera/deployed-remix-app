@@ -19,7 +19,7 @@ export default function Index() {
     <div className="flex h-screen items-center justify-center">
         {date}
         <img src="https://picsum.photos/1366/768" alt="" />
-        <p>{APP_ENV}</p>
+        <p style={{backgroundColor: APP_ENV === 'production' ? "pink" : "yellow", color: "black"}}>{APP_ENV}</p>
     </div>
   );
 }
