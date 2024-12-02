@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async({res}: MetaFunction) => {
+export const loader = async() => {
   return {date: new Date().toLocaleDateString('fr-FR'), APP_ENV: process.env.APP_ENV}
 }
 
