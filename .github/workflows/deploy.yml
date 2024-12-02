@@ -72,9 +72,6 @@ jobs:
     #   APP_ENV: ${{ secrets.APP_ENV }}
 
     steps:
-      # - name: 🔴 Cancel Previous Runs
-      #   uses: styfle/cancel-workflow-action
-
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
