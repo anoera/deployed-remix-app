@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   lint:
-    name: ⬣ ESLint
+    name: ⬣ Biome
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
@@ -84,7 +84,7 @@ jobs:
           APP_ENV: ${{ secrets.APP_ENV_STAGING }}
         run: 
           docker pull anoera/deployed-app:latest &&
-          docker compose -f ./docker-compose.staging.yml up -d &&
+          docker compose -f ./preprod/docker-compose.staging.yml up -d &&
           docker system prune --all --volumes --force
 
       - name: 🚀 Run Docker Compose on Production
@@ -93,5 +93,5 @@ jobs:
           APP_ENV: ${{ secrets.APP_ENV }}
         run: 
           docker pull anoera/deployed-app:production &&
-          docker compose -f ./docker-compose.yml up -d &&
+          docker compose -f ./prod/docker-compose.yml up -d &&
           docker system prune --all --volumes --force

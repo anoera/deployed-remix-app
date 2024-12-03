@@ -5,5 +5,9 @@
             "file:///e%3A/0-DDi/CodeSandbox/react_projects/deployed-app/.github/workflows/deploy.yaml",
             "file:///e%3A/0-DDi/CodeSandbox/react_projects/deployed-app/.github/workflows/deploy.yml"
         ]
+    },
+    "editor.codeActionsOnSave": {
+         "source.fixAll.biome": "explicit",
+         "source.organizeImports.biome": "explicit"
     }
 }
