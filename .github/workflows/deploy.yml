@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   lint:
-    name: ⬣ ESLint
+    name: ⬣ Biome
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
