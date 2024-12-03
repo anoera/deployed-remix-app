@@ -3,7 +3,7 @@ services:
         environment:
             - APP_ENV
 
-        container_name: deployed-app
+        container_name: deployed-app-prod
         image: anoera/deployed-app:production
         restart: always
         ports:
